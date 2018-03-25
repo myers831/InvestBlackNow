@@ -1,0 +1,26 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.admin.investblacknow.NavDrawFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/dlDrawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        tools:context="com.example.admin.project1.MainActivity">
+
+        <ListView
+            android:id="@+id/lvList"
+            android:layout_width="250dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:background="#0081c8"
+            android:divider="@null">
+
+        </ListView>
+
+    </android.support.v4.widget.DrawerLayout>
+</FrameLayout>
