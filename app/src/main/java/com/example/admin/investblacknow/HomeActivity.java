@@ -16,7 +16,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +40,8 @@ public class HomeActivity extends BaseActivity {
 
     FrameLayout navFrame;
 
+    ImageView ivContactPicHome;
+
     private Toolbar myToolbar;
     private boolean navSwitch = false;
     //private DrawerLayout dlLayout;
@@ -50,6 +55,10 @@ public class HomeActivity extends BaseActivity {
         myToolbar = findViewById(R.id.my_toolbar);
         navFrame = findViewById(R.id.navFrame);
         //dlLayout = findViewById(R.id.dlDrawer);
+        ivContactPicHome = findViewById(R.id.ivContactPicHome);
+
+        Glide.with(this).load("http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png")
+                .into(ivContactPicHome);
 
         navDrawFragment = new NavDrawFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.navFrame, navDrawFragment, NAV_FRAG_TAG).addToBackStack(NAV_FRAG_TAG).commit();
@@ -149,26 +158,26 @@ public class HomeActivity extends BaseActivity {
         contacts.add("Instagram: Mac831");
         contacts.add("Email: Myers831@yahoo.com");
 
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png", contacts));
+        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822",100, "AD2341", true, contacts));
+        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
 
     }
 }

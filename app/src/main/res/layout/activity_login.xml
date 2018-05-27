@@ -27,7 +27,7 @@
         <TextView
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:text="User Name"
+            android:text="Email"
             android:textSize="25sp"
             android:textColor="@color/colorPrimaryDark"
             android:layout_marginLeft="5dp"/>
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_marginBottom="30dp"
-            android:id="@+id/etUserName"/>
+            android:id="@+id/etEmail"/>
 
         <TextView
             android:layout_width="match_parent"
