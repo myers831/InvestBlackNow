@@ -23,6 +23,9 @@ public class SignUpActivity extends BaseActivity {
     private static final String TAG = "SignUpActivity";
     private FirebaseAuth mAuth;
     private DatabaseReference database;
+
+    private Contact contact;
+
     private EditText nameSU;
     private EditText emailSU;
     private EditText passwordSU;
@@ -43,6 +46,9 @@ public class SignUpActivity extends BaseActivity {
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
+
+        contact = null;
+
         nameSU = findViewById(R.id.NameEt);
         emailSU = findViewById(R.id.EmailEt);
         passwordSU = findViewById(R.id.PasswordEt);
@@ -69,7 +75,7 @@ public class SignUpActivity extends BaseActivity {
                                     Toast.makeText(SignUpActivity.this, "SignUp Successful",
                                             Toast.LENGTH_SHORT).show();
                                     FirebaseUser user = mAuth.getCurrentUser();
-                                    addUser();
+                                    addUser(user.getUid());
                                     updateUI(user);
                                 } else {
                                     // If sign in fails, display a message to the user.
@@ -83,14 +89,14 @@ public class SignUpActivity extends BaseActivity {
                         });
     }
 
-    private void addUser() {
+    private void addUser(String Udi) {
         List<String> contactList = new ArrayList<>();
         contactList.add(phoneSU.getText().toString());
         contactList.add(linkedinSU.getText().toString());
         contactList.add(facebookSU.getText().toString());
         contactList.add(instagramSU.getText().toString());
 
-        Contact contact = new Contact(nameSU.getText().toString(),
+        contact = new Contact(nameSU.getText().toString(),
                 occupationSU.getText().toString(),
                 imageSU,
                 emailSU.getText().toString(),
@@ -100,11 +106,12 @@ public class SignUpActivity extends BaseActivity {
                 paidSU,
                 contactList);
 
-        database.child("Users").child(idSU).setValue(contact);
+        database.child("Users").child(Udi).setValue(contact);
     }
 
     private void updateUI(FirebaseUser user) {
         Intent intent = new Intent(this, HomeActivity.class);
+        intent.putExtra("contact", contact);
         Log.d(TAG, user.getEmail());
         startActivity(intent);
     }

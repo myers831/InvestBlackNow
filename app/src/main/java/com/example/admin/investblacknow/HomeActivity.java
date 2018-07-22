@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -42,6 +43,11 @@ public class HomeActivity extends BaseActivity {
 
     ImageView ivContactPicHome;
 
+    private TextView nameH;
+    private TextView occupationH;
+    private TextView commissionH;
+    private TextView idH;
+
     private Toolbar myToolbar;
     private boolean navSwitch = false;
     //private DrawerLayout dlLayout;
@@ -56,6 +62,11 @@ public class HomeActivity extends BaseActivity {
         navFrame = findViewById(R.id.navFrame);
         //dlLayout = findViewById(R.id.dlDrawer);
         ivContactPicHome = findViewById(R.id.ivContactPicHome);
+
+        nameH = findViewById(R.id.HomeNameTv);
+        occupationH = findViewById(R.id.HomeOccupationTv);
+        commissionH = findViewById(R.id.HomeCommissionTv);
+        idH = findViewById(R.id.HomeCommissionTv);
 
         Glide.with(this).load("http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png")
                 .into(ivContactPicHome);
