@@ -34,6 +34,7 @@ public class SignUpActivity extends BaseActivity {
     private EditText linkedinSU;
     private EditText facebookSU;
     private EditText instagramSU;
+    private EditText referenceIdSU;
     private String imageSU;
     private String idSU;
     private int commissionSU;
@@ -57,6 +58,7 @@ public class SignUpActivity extends BaseActivity {
         linkedinSU = findViewById(R.id.LinkedinEt);
         facebookSU = findViewById(R.id.FacebookEt);
         instagramSU = findViewById(R.id.InstagramEt);
+        referenceIdSU = findViewById(R.id.ReferenceEt);
         imageSU =  "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png";
         commissionSU = 0;
         idSU = "AA2345";
@@ -104,7 +106,8 @@ public class SignUpActivity extends BaseActivity {
                 commissionSU,
                 idSU,
                 paidSU,
-                contactList);
+                contactList,
+                referenceIdSU.getText().toString());
 
         database.child("Users").child(Udi).setValue(contact);
     }

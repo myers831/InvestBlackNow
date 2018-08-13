@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 public class ContactInformationActivity extends AppCompatActivity {
 
-    TextView tvName, tvEmail, tvFacebook, tvInstgram;
+    TextView tvName, tvEmail, tvFacebook, tvInstgram, tvOccupation, tvId;
     Contact contact;
 
     @Override
@@ -18,6 +18,8 @@ public class ContactInformationActivity extends AppCompatActivity {
         tvEmail = findViewById(R.id.tvEmail);
         tvFacebook = findViewById(R.id.tvFacebook);
         tvInstgram = findViewById(R.id.tvInstagram);
+        tvOccupation = findViewById(R.id.tvOccupation);
+        tvId = findViewById(R.id.tvId);
 
         contact = (Contact) getIntent().getSerializableExtra("contact");
 

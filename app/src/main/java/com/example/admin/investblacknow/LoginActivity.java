@@ -108,9 +108,10 @@ public class LoginActivity extends BaseActivity {
                         Integer.parseInt(dataSnapshot.child("commission").getValue().toString()),
                         dataSnapshot.child("id").getValue().toString(),
                         Boolean.parseBoolean(dataSnapshot.child("paid").getValue().toString()),
-                        contactList);
+                        contactList, dataSnapshot.child("reference").getValue().toString());
 
                 Log.d(TAG, "Value is: " + contact.getEmail());
+                startMain();
             }
 
             @Override
@@ -120,8 +121,12 @@ public class LoginActivity extends BaseActivity {
             }
         });
 
+
+    }
+
+    public void startMain(){
         Intent intent = new Intent(this, HomeActivity.class);
-        Log.d(TAG, user.getEmail());
+        intent.putExtra("contact", contact);
         startActivity(intent);
     }
 }

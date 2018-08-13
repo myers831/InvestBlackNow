@@ -14,12 +14,13 @@ public class Contact implements Serializable{
     private String Image;
     private String Email;
     private String Password;
+    private String Reference;
     private int Commission;
     private String ID;
     private boolean Paid;
     private List<String> ContactOptions = new ArrayList<>();
 
-    public Contact(String name, String occupation, String image, String email, String password, int commission, String id, boolean paid, List<String> contactOptions){
+    public Contact(String name, String occupation, String image, String email, String password, int commission, String id, boolean paid, List<String> contactOptions, String reference){
         this.Name = name;
         this.Occupation = occupation;
         this.Image = image;
@@ -29,6 +30,7 @@ public class Contact implements Serializable{
         this.ID = id;
         this.Paid = paid;
         this.ContactOptions = contactOptions;
+        this.Reference = reference;
     }
 
     public String getName() {
@@ -70,4 +72,8 @@ public class Contact implements Serializable{
     public List<String> getContactOptions() {return ContactOptions;}
 
     public void setContactOptions(List<String> contactOptions) {ContactOptions = contactOptions;}
+
+    public String getReference() {return Reference;}
+
+    public void setReference(String reference) {Reference = reference;}
 }

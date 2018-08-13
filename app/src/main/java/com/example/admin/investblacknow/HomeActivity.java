@@ -2,25 +2,25 @@ package com.example.admin.investblacknow;
 
 import android.os.SystemClock;
 import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,11 +37,16 @@ public class HomeActivity extends BaseActivity {
     RecyclerView.ItemAnimator itemAnimator;
     HomeRecyclerViewAdapter homeRecyclerViewAdapter;
 
+    private FirebaseDatabase database;
+    private DatabaseReference userRef;
+
     NavDrawFragment navDrawFragment;
 
     FrameLayout navFrame;
 
     ImageView ivContactPicHome;
+
+    Contact contact;
 
     private TextView nameH;
     private TextView occupationH;
@@ -66,10 +71,13 @@ public class HomeActivity extends BaseActivity {
         nameH = findViewById(R.id.HomeNameTv);
         occupationH = findViewById(R.id.HomeOccupationTv);
         commissionH = findViewById(R.id.HomeCommissionTv);
-        idH = findViewById(R.id.HomeCommissionTv);
+        idH = findViewById(R.id.HomeIdTv);
 
         Glide.with(this).load("http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png")
                 .into(ivContactPicHome);
+
+        database = FirebaseDatabase.getInstance();
+        userRef = database.getReference("Users");
 
         navDrawFragment = new NavDrawFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.navFrame, navDrawFragment, NAV_FRAG_TAG).addToBackStack(NAV_FRAG_TAG).commit();
@@ -137,7 +145,13 @@ public class HomeActivity extends BaseActivity {
         rvContactList = findViewById(R.id.rvContactsList);
         rvContactList.setLayoutManager(layoutManager);
         rvContactList.setItemAnimator(itemAnimator);
-        rvContactList.setAdapter(homeRecyclerViewAdapter);
+
+        contact = (Contact) getIntent().getSerializableExtra("contact");
+
+        nameH.setText(contact.getName());
+        occupationH.setText(contact.getOccupation());
+        commissionH.setText("$"+String.valueOf(contact.getCommission()));
+        idH.setText("ID: " + contact.getID());
     }
 
     @Override
@@ -164,31 +178,45 @@ public class HomeActivity extends BaseActivity {
 
     private void initContacts() {
 
-        List<String> contacts = new ArrayList<>();
-        contacts.add("Facebook: Mmy Ers");
-        contacts.add("Instagram: Mac831");
-        contacts.add("Email: Myers831@yahoo.com");
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                contactList.clear();
+                boolean hasContacts = dataSnapshot.hasChildren();
+                Log.d(TAG, "onDataChange: " + hasContacts);
+                if(hasContacts){
+                    Log.d(TAG, "onDataChange: Contacts count: " + dataSnapshot.getChildrenCount());
 
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822",100, "AD2341", true, contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Mac", "Software Developer", "http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Chris", "Writer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Jake", "Investor","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Mike", "Banker","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
-        contactList.add(new Contact("Tiffany", "Lawyer","http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png","myers831@yahoo.com", "32988822", 100, "AD2341", true, contacts));
+                    for(DataSnapshot snapShot: dataSnapshot.getChildren()){
+                        List<String> contacts = new ArrayList<>();
+                        contacts.add(snapShot.child("contactOptions").child("0").getValue().toString());
+                        contacts.add(snapShot.child("contactOptions").child("1").getValue().toString());
+                        contacts.add(snapShot.child("contactOptions").child("2").getValue().toString());
+                        contacts.add(snapShot.child("contactOptions").child("3").getValue().toString());
 
+                        contactList.add(new Contact(snapShot.child("name").getValue().toString(),
+                                snapShot.child("occupation").getValue().toString(),
+                                snapShot.child("image").getValue().toString(),
+                                snapShot.child("email").getValue().toString(),
+                                snapShot.child("password").getValue().toString(),
+                                Integer.parseInt(snapShot.child("commission").getValue().toString()),
+                                snapShot.child("id").getValue().toString(),
+                                Boolean.parseBoolean(snapShot.child("paid").getValue().toString()),
+                                contacts,
+                                snapShot.child("reference").getValue().toString()));
+                    }
+                }
+                setAdapter();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: " + databaseError.getMessage());
+            }
+        });
+    }
+
+    public void setAdapter(){
+        rvContactList.setAdapter(homeRecyclerViewAdapter);
     }
 }
