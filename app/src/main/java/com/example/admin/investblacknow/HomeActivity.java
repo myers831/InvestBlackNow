@@ -15,7 +15,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -55,8 +54,6 @@ public class HomeActivity extends BaseActivity {
 
     private Toolbar myToolbar;
     private boolean navSwitch = false;
-    //private DrawerLayout dlLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +62,7 @@ public class HomeActivity extends BaseActivity {
 
         myToolbar = findViewById(R.id.my_toolbar);
         navFrame = findViewById(R.id.navFrame);
-        //dlLayout = findViewById(R.id.dlDrawer);
+
         ivContactPicHome = findViewById(R.id.ivContactPicHome);
 
         nameH = findViewById(R.id.HomeNameTv);

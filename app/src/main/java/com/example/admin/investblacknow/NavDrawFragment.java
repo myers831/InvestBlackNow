@@ -22,7 +22,7 @@ public class NavDrawFragment extends Fragment implements AdapterView.OnItemClick
     private ListView lvList;
     public DrawerLayout dlLayout;
 
-    String[] menuItems = {"Home", "Store", "Social Media", "Photos", "About Us", "Contact Us", "Settings"};
+    String[] menuItems = {"Home", "Profile", "Edit Profile", "Store", "Social Media", "Photos", "About Us", "Contact Us", "Settings"};
 
     public NavDrawFragment() {
         // Required empty public constructor
