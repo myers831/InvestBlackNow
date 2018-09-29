@@ -21,7 +21,8 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".BaseActivity" />
         <activity android:name=".ContactInformationActivity" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".DemoSignUpCompleteActivity"></activity>
     </application>
 
 </manifest>

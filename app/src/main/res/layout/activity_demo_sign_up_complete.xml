@@ -1,9 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DemoSignUpCompleteActivity">
+    tools:context=".DemoSignUpCompleteActivity"
+    android:background="#000000"
+    android:orientation="vertical">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center_horizontal"
+        android:background="#FFFFFF">
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Invest"
+            android:textSize="45sp"
+            android:textColor="#228b22"
+            android:paddingLeft="10dp"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text=" Black"
+            android:textSize="45sp"
+            android:textColor="#000000"/>
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text=" Now"
+            android:textSize="45sp"
+            android:textColor="#B22222"/>
+    </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#228b22"
+        android:textSize="40dp"
+        android:text="Sign Up Complete"
+        android:layout_marginTop="100dp"/>
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="#B22222"
+        android:textSize="40dp"
+        android:layout_marginTop="40dp"
+        android:text="Thank You"/>
+
+</LinearLayout>

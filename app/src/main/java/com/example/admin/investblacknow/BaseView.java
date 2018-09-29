@@ -5,4 +5,5 @@ package com.example.admin.investblacknow;
  */
 
 public interface BaseView {
+    void showError(String s);
 }

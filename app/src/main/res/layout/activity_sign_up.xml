@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="#000000">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,7 +10,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.example.admin.investblacknow.SignUpActivity">
+        tools:context="com.example.admin.investblacknow.SignUpActivity"
+        android:background="#000000">
+
+
 
         <EditText
             android:id="@+id/NameEt"
@@ -18,7 +22,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="First Name Last Name"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff" />
 
         <EditText
             android:id="@+id/EmailEt"
@@ -27,7 +34,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="Email"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"/>
 
         <EditText
             android:id="@+id/PasswordEt"
@@ -37,7 +47,10 @@
             android:layout_marginTop="10dp"
             android:hint="Password"
             android:textSize="15dp"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"/>
 
         <EditText
             android:id="@+id/OccupationEt"
@@ -46,7 +59,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="Occupation"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"/>
 
         <EditText
             android:id="@+id/PhoneEt"
@@ -55,7 +71,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="Phone"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"/>
 
         <EditText
             android:id="@+id/LinkedinEt"
@@ -64,7 +83,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="LinkedIn"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"/>
 
         <EditText
             android:id="@+id/FacebookEt"
@@ -73,7 +95,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="Facebook"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"/>
 
         <EditText
             android:id="@+id/InstagramEt"
@@ -82,7 +107,10 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="Instagram"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"/>
 
         <EditText
             android:id="@+id/ReferenceEt"
@@ -91,24 +119,35 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:hint="Reference ID"
-            android:textSize="15dp" />
+            android:textSize="15dp"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff"
+            android:textColorHighlight="#ffffff"
+            android:visibility="gone"/>
 
-        <Button
+        <!--<Button
             android:id="@+id/PictureBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:onClick="addPicture"
             android:text="Add Picture"
-            android:textSize="20dp" />
-
+            android:textSize="20dp" />-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
         <Button
             android:id="@+id/SignupBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:onClick="signUpExecute"
-            android:text="Sign Up"
-            android:textSize="20dp" />
+            android:text="Save"
+            android:layout_gravity="bottom"
+            android:textColor="#000000"
+            android:background="#228b22"
+            android:textSize="30sp"/>
     </LinearLayout>
+</LinearLayout>
 </ScrollView>

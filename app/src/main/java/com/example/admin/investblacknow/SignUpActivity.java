@@ -113,7 +113,8 @@ public class SignUpActivity extends BaseActivity {
     }
 
     private void updateUI(FirebaseUser user) {
-        Intent intent = new Intent(this, HomeActivity.class);
+//        Intent intent = new Intent(this, HomeActivity.class);
+        Intent intent = new Intent(this, DemoSignUpCompleteActivity.class);
         intent.putExtra("contact", contact);
         Log.d(TAG, user.getEmail());
         startActivity(intent);

@@ -15,18 +15,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity implements HomeActivityContract.View {
 
-    List<Contact> contactList = new ArrayList<>();
+    HomeActivityPresenter presenter;
 
     String NAV_FRAG_TAG = "navigationFragmentTag";
     String TAG = "HomeActivity";
@@ -35,9 +28,6 @@ public class HomeActivity extends BaseActivity {
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.ItemAnimator itemAnimator;
     HomeRecyclerViewAdapter homeRecyclerViewAdapter;
-
-    private FirebaseDatabase database;
-    private DatabaseReference userRef;
 
     NavDrawFragment navDrawFragment;
 
@@ -60,6 +50,9 @@ public class HomeActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        presenter = new HomeActivityPresenter();
+        presenter.addView(this);
+
         myToolbar = findViewById(R.id.my_toolbar);
         navFrame = findViewById(R.id.navFrame);
 
@@ -72,9 +65,6 @@ public class HomeActivity extends BaseActivity {
 
         Glide.with(this).load("http://www.personalbrandingblog.com/wp-content/uploads/2017/08/blank-profile-picture-973460_640-300x300.png")
                 .into(ivContactPicHome);
-
-        database = FirebaseDatabase.getInstance();
-        userRef = database.getReference("Users");
 
         navDrawFragment = new NavDrawFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.navFrame, navDrawFragment, NAV_FRAG_TAG).addToBackStack(NAV_FRAG_TAG).commit();
@@ -136,7 +126,7 @@ public class HomeActivity extends BaseActivity {
 
         layoutManager = new LinearLayoutManager(this);
         itemAnimator = new DefaultItemAnimator();
-        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(this, contactList);
+//        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(this, contactList);
 
 
         rvContactList = findViewById(R.id.rvContactsList);
@@ -174,46 +164,18 @@ public class HomeActivity extends BaseActivity {
     }
 
     private void initContacts() {
-
-        userRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                contactList.clear();
-                boolean hasContacts = dataSnapshot.hasChildren();
-                Log.d(TAG, "onDataChange: " + hasContacts);
-                if(hasContacts){
-                    Log.d(TAG, "onDataChange: Contacts count: " + dataSnapshot.getChildrenCount());
-
-                    for(DataSnapshot snapShot: dataSnapshot.getChildren()){
-                        List<String> contacts = new ArrayList<>();
-                        contacts.add(snapShot.child("contactOptions").child("0").getValue().toString());
-                        contacts.add(snapShot.child("contactOptions").child("1").getValue().toString());
-                        contacts.add(snapShot.child("contactOptions").child("2").getValue().toString());
-                        contacts.add(snapShot.child("contactOptions").child("3").getValue().toString());
-
-                        contactList.add(new Contact(snapShot.child("name").getValue().toString(),
-                                snapShot.child("occupation").getValue().toString(),
-                                snapShot.child("image").getValue().toString(),
-                                snapShot.child("email").getValue().toString(),
-                                snapShot.child("password").getValue().toString(),
-                                Integer.parseInt(snapShot.child("commission").getValue().toString()),
-                                snapShot.child("id").getValue().toString(),
-                                Boolean.parseBoolean(snapShot.child("paid").getValue().toString()),
-                                contacts,
-                                snapShot.child("reference").getValue().toString()));
-                    }
-                }
-                setAdapter();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: " + databaseError.getMessage());
-            }
-        });
+        presenter.getContacts();
     }
 
-    public void setAdapter(){
+    @Override
+    public void setAdapter(List<Contact> contactList){
+
+        homeRecyclerViewAdapter = new HomeRecyclerViewAdapter(this, contactList);
         rvContactList.setAdapter(homeRecyclerViewAdapter);
+    }
+
+    @Override
+    public void showError(String s) {
+
     }
 }
